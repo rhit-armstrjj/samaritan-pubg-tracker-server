@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,7 @@ public class MatchLookupService {
                 conn.setRequestProperty("Authorization",String.format("Bearer %s",apiKey));
                 conn.setRequestProperty("Accept", "application/vnd.api+json");
 
-                InputStream jIS = conn.getInputStream();
+                JSONObject json = new JSONObject(IOUtils.toString(conn.getInputStream()));
 
                 Thread.sleep(/*TODO Time*/);
                 return CompletableFuture.completedFuture();
