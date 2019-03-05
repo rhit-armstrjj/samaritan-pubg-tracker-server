@@ -2,6 +2,7 @@ package net.bak3dnet.samaritan_pubg_server;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -12,8 +13,8 @@ public class MatchRequestController {
     private int counter = 0;
 
     @GetMapping()
-    public MatchData index() {
-        return new MatchData("Dancing Tight", ++counter);
+    public Object index(@RequestParam(defaultValue="",name="playerName") String namae) {
+        return new MatchData(String.format("Dancing Tight %s",namae), ++counter);
     }
 
     @GetMapping("/resetCounter")
@@ -23,8 +24,8 @@ public class MatchRequestController {
     }
 
     @GetMapping("/shutdown")
-    public void stop() {
-        System.exit(0);
+    public String stop() {
+        return "u thot 🦆🌊";
     }
 
 }
